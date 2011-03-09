@@ -22,22 +22,31 @@
   {
     ( function( input )
     {
+      // default no-file text
+      var nofile = "No file selected.";
+      
       // hide the original input
-      // TODO there may be something else we can do here to truly hide it,
-      // like absolutely position it off the page
-      input.css( { visibility : 'hidden' } );
+      input.css( { visibility : 'hidden', position : 'absolute', top : -9999 } );
       
       // create our fancy button container
       var fancy = $( '<div class="fancy-input"></div>' );
       
       // create a label to mimic the input's label
-      var label = $( '<div class="fancy-input-label">No file selected.</div>' ).css( { display : 'inline', 'margin-left' : 10 } );
+      var label = $( '<div class="fancy-input-label"></div>' ).css( { display : 'inline', 'margin-left' : 10 } ).text( nofile );
+      
+      // method to update the label
+      var update = function( )
+      {
+        var text = input.val( );
+        
+        label.text( text.length > 0 ? text : nofile );
+      };
       
       // bind any changes in the input text to the button
-      input.bind( 'change', function( ){ label.text( input.val( ) ); } );
+      input.bind( 'change', update );
       
       // don't risk it, update that label whenever the user interacts with it
-      fancy.bind( 'mouseout', function( ){ label.text( input.val( ) ); } );
+      fancy.bind( 'mouseout', update );
       
       // forward on the click event from the input
       button = $( button ).click( function( ){ input.click( ); } );
