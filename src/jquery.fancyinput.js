@@ -1,8 +1,21 @@
 ( function( $ )
 {
   /**
+   * jquery fancyinput plugin
+   * 
+   * Author: jeremy ruppel
+   * Homepage: https://github.com/jeremyruppel/jquery.fancyinput
    *
+   * About:
    *
+   * jquery.fancyinput is a quick little plugin for styling file input fields.
+   * the technique was inspired heavily from this blog post by David:
+   *
+   * http://blog.vworld.at/2008/08/21/styling-an-input-typefile-using-jquery/
+   *
+   * Usage:
+   *
+   * $( 'input[type=file]' ).fancyinput( '<a class="my-new-button">Upload yer filez!</a>' );
    *
    */
   $.fn.fancyinput = function( button )
