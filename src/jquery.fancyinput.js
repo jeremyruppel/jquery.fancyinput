@@ -23,6 +23,8 @@
     ( function( input )
     {
       // hide the original input
+      // TODO there may be something else we can do here to truly hide it,
+      // like absolutely position it off the page
       input.css( { visibility : 'hidden' } );
       
       // create our fancy button container
@@ -32,7 +34,10 @@
       var label = $( '<div class="fancy-input-label">No file selected.</div>' ).css( { display : 'inline', 'margin-left' : 10 } );
       
       // bind any changes in the input text to the button
-      input.bind( 'change mouseout', function( ){ label.text( input.val( ) ); } );
+      input.bind( 'change', function( ){ label.text( input.val( ) ); } );
+      
+      // don't risk it, update that label whenever the user interacts with it
+      fancy.bind( 'mouseout', function( ){ label.text( input.val( ) ); } );
       
       // forward on the click event from the input
       button = $( button ).click( function( ){ input.click( ); } );
